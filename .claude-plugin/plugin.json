@@ -1,0 +1,5 @@
+{
+  "name": "dashboard-qa",
+  "version": "1.0.0",
+  "description": "Diez skills independientes para auditar la calidad de un dashboard web, con trazabilidad a ISO/IEC 25010, 25012, 27001 y 42001."
+}
