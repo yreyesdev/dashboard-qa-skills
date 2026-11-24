@@ -1,6 +1,6 @@
 # Dashboard QA Skills
 
-Colección de diez skills para auditar la calidad de un dashboard web de punta a punta. Cada skill es independiente: trae su propio alcance, preparación, pasos, escala de severidad, formato de hallazgo e informe final. Juntas cubren las nueve características del modelo de calidad de producto **ISO/IEC 25010:2023**, con trazabilidad a **ISO/IEC 25012** (calidad de datos), a los controles del Anexo A de **ISO/IEC 27001:2022** y, para el asistente de IA, a **ISO/IEC 42001**.
+Colección de once skills para auditar la calidad de un dashboard o aplicación web de gestión de punta a punta y consolidar sus resultados. Cada skill de auditoría es independiente: trae su propio alcance, preparación, pasos, escala de severidad, formato de hallazgo e informe final; además, `dashboard-qa-consolidar` coordina ejecuciones múltiples y deduplica hallazgos por causa raíz. Juntas cubren las nueve características del modelo de calidad de producto **ISO/IEC 25010:2023**, con trazabilidad a **ISO/IEC 25012** (calidad de datos), a los controles del Anexo A de **ISO/IEC 27001:2022** y, para el asistente de IA, a **ISO/IEC 42001**.
 
 > Los informes que generan estas skills son **evidencia técnica**, no una certificación. ISO/IEC 27001 certifica el sistema de gestión de una organización, no un producto. Las skills citan normas solo por número y nombre, con descripciones propias; no reproducen su texto.
 
@@ -18,6 +18,7 @@ Colección de diez skills para auditar la calidad de un dashboard web de punta a
 | [`dashboard-qa-accesibilidad`](skills/dashboard-qa-accesibilidad/SKILL.md) | WCAG 2.2 AA: teclado, lectores de pantalla, gráficos, contraste | `A11Y` | WCAG 2.2 / ISO/IEC 40500 |
 | [`dashboard-qa-compatibilidad-i18n`](skills/dashboard-qa-compatibilidad-i18n/SKILL.md) | Navegadores, dispositivos, traducciones, formatos regionales | `COMP` | ISO/IEC 25010, flexibilidad y compatibilidad |
 | [`dashboard-qa-mantenibilidad`](skills/dashboard-qa-mantenibilidad/SKILL.md) | Código: modularidad, complejidad, pruebas, pipeline, dependencias | `MANT` | ISO/IEC 25010, mantenibilidad |
+| [`dashboard-qa-consolidar`](skills/dashboard-qa-consolidar/SKILL.md) | Orquestación paralela, estructura de evidencias y consolidado deduplicado | — | ISO/IEC/IEEE 29119 / 25010 |
 
 La correspondencia completa con las normas está en [`docs/trazabilidad-normativa.md`](docs/trazabilidad-normativa.md).
 
@@ -42,15 +43,15 @@ dashboard-qa-skills/
 
 **Como skills sueltas en Claude:** sube cada carpeta de `skills/` (o su `SKILL.md`) desde la configuración de skills de Claude.
 
-**Como plugin:** el repositorio incluye `.claude-plugin/plugin.json`, así que se puede instalar como plugin en los entornos que lo admiten y las diez skills quedan disponibles a la vez.
+**Como plugin:** el repositorio incluye `.claude-plugin/plugin.json`, así que se puede instalar como plugin en los entornos que lo admiten y las once skills quedan disponibles a la vez.
 
 **Al pedir una auditoría**, nombra la skill y da el contexto que pide su sección "Antes de empezar". Por ejemplo:
 
 > Usa `dashboard-qa-integridad-datos` sobre https://staging.ejemplo.com. Tienes acceso de solo lectura a la base de datos de staging. La zona horaria de la organización es America/Caracas.
 
-## Orden sugerido
+## Orden sugerido y ejecución en paralelo
 
-Si vas a ejecutar varias, este orden aprovecha lo que descubre cada una:
+Si vas a ejecutar varias en secuencia, este orden aprovecha lo que descubre cada una:
 
 1. **Funcional**: construye el inventario de pantallas, widgets y roles que usan las demás.
 2. **Integridad de datos**: confirma que las cifras son confiables antes de medir otra cosa.
@@ -59,16 +60,20 @@ Si vas a ejecutar varias, este orden aprovecha lo que descubre cada una:
 5. **Rendimiento**, en una ventana acordada con el equipo de infraestructura.
 6. **Accesibilidad** y **compatibilidad e idiomas**.
 7. **Mantenibilidad**, que mira el código y explica la causa de muchos de los hallazgos anteriores.
+8. **Consolidación** (`dashboard-qa-consolidar`), para deduplicar hallazgos por causa raíz usando [`plantillas/informe-consolidado.md`](plantillas/informe-consolidado.md).
 
-Para unir los resultados en un solo documento, usa [`plantillas/informe-consolidado.md`](plantillas/informe-consolidado.md).
+Si ejecutas varias skills **en paralelo** con distintos auditores o subagentes:
+- Sigue la guía de `dashboard-qa-consolidar` (Fase 1): asigna a cada skill el prefijo `QA_AAAAMMDD_<PREFIJO>_` (p. ej. `QA_20261124_FUN_`) para evitar colisiones en los datos de prueba.
+- Guarda los resultados en una carpeta de corrida (ej. `docs/qa-<producto>-AAAAMMDD/`) con un archivo `.md` por skill y su subcarpeta `evidencia-<prefijo>/`.
+- No ejecutes pruebas de carga/estrés (`PERF`, paso 4) al mismo tiempo que el resto de auditorías sobre la misma instancia.
 
 ## Reglas comunes a todas las skills
 
 - Trabajar en staging o QA, nunca en producción sin autorización explícita.
-- Usar solo datos ficticios, prefijados con `QA_AAAAMMDD_`, y documentar cómo limpiarlos.
-- Las pruebas de seguridad y del asistente de IA exigen autorización previa del dueño del sistema.
+- Usar solo datos ficticios, prefijados con `QA_AAAAMMDD_` (o `QA_AAAAMMDD_<PREFIJO>_` en paralelo), y documentar cómo limpiarlos.
+- Las pruebas de seguridad, del asistente de IA y de carga exigen autorización previa del dueño del sistema.
 - No afirmar nada que no se haya ejecutado: lo no probado se marca como "No verificado".
-- No incluir credenciales, tokens ni datos personales reales en los informes.
+- No incluir credenciales, tokens ni datos personales reales en los informes ni en las carpetas de evidencia.
 
 ## Contribuir
 

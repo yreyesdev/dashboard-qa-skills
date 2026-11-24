@@ -43,6 +43,7 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 - Si encuentras secretos (claves, contraseñas, tokens) en el código o en el historial, no los copies al informe: indica solo archivo, línea y tipo, y avisa de inmediato para que se roten.
 - Las métricas automáticas orientan, pero no deciden solas: confirma cada hallazgo importante leyendo el código.
 - Señala también lo que está bien hecho, para que no se pierda en una refactorización.
+- Guarda salidas de linters, cobertura y análisis estático relevantes en `evidencia-mant/` junto al informe (sin secretos).
 
 ## Valores de referencia por defecto
 Úsalos solo si el equipo no tiene los suyos, y márcalos como supuestos en el informe:

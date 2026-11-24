@@ -12,6 +12,7 @@ Mide cuánto tarda el dashboard, qué lo hace lento y cuánto aguanta antes de d
 2. **Autorización para carga**: las pruebas de carga y estrés solo se lanzan con permiso del responsable del entorno, en una ventana acordada y nunca contra producción sin un acuerdo explícito.
 3. **Observabilidad**: acceso a métricas del servidor y de la base de datos (APM, logs de consultas lentas, CPU, memoria, conexiones). Sin esto puedes medir el síntoma, pero no la causa; dilo.
 4. **Usuarios de prueba**: varias cuentas, para no concentrar la carga en una sola sesión o caché.
+5. **Ventana aislada para carga**: no ejecutes el paso 4 (carga, estrés o resistencia) al mismo tiempo que otras auditorías (`FUN`, `DAT`, `EDGE`, `EST`, `A11Y`, `COMP`) sobre el mismo servidor, para no distorsionar latencias ni provocar timeouts falsos. Si creas datos de prueba en paralelo, usa el prefijo `QA_AAAAMMDD_PERF_`, y guarda reportes de Lighthouse, scripts y resultados en `evidencia-perf/` junto al informe.
 
 ## Alcance
 Incluye: rendimiento percibido en el navegador, red y payloads, tiempos de la API, base de datos, caché, carga concurrente, estrés, resistencia (soak), picos, exportaciones y trabajos pesados, y consumo de memoria del cliente.

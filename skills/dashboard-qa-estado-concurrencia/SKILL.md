@@ -8,7 +8,7 @@ description: Prueba estado, sesión y concurrencia en un dashboard: sesión que 
 Los fallos de esta categoría no aparecen al probar con un usuario, una pestaña y cinco minutos. Esta skill reproduce el uso real: varias pestañas, varias personas a la vez, sesiones largas, redes que se cortan y datos que cambian mientras alguien los mira.
 
 ## Alcance
-Incluye: ciclo de vida de la sesión, varias pestañas y ventanas, edición concurrente entre usuarios, idempotencia de acciones, actualizaciones en tiempo real, condiciones de carrera en la interfaz, estado en la URL y navegación, persistencia de preferencias, uso prolongado y trabajos asíncronos.
+Incluye: ciclo de vida de la sesión, varias pestañas y ventanas, edición concurrente entre usuarios, idempotencia de acciones (dueña de pruebas profundas de doble clic y reintentos frente a `FUN`/`EDGE`), actualizaciones en tiempo real, condiciones de carrera en la interfaz, estado en la URL y navegación, persistencia de preferencias, uso prolongado y trabajos asíncronos.
 
 Fuera de alcance: pruebas de carga con muchos usuarios simulados y auditoría de seguridad de tokens. Si encuentras algo de eso por casualidad, anótalo.
 
@@ -42,7 +42,8 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 5. **Herramientas**: dos perfiles de navegador o un navegador normal más una ventana privada, y las herramientas de desarrollo para simular red y avanzar timers.
 
 ## Reglas de trabajo
-- Trabaja en staging o QA (8.31) con datos ficticios (8.33), prefijados con `QA_AAAAMMDD_`.
+- Trabaja en staging o QA (8.31) con datos ficticios (8.33), prefijados con `QA_AAAAMMDD_` (o `QA_AAAAMMDD_EST_` si corres en paralelo con otras skills).
+- Guarda secuencias, capturas y trazas de red relevantes en `evidencia-est/` junto al informe (sin credenciales ni tokens).
 - Para reducir la espera en pruebas de expiración, pide al equipo una configuración de sesión corta en staging, o borra o modifica cookies y tokens para simular la expiración, y anota qué método usaste.
 - Anota hora exacta y orden de las acciones en cada prueba concurrente: sin la secuencia, el fallo no es reproducible.
 - Repite varias veces las pruebas de carrera; anota la frecuencia.

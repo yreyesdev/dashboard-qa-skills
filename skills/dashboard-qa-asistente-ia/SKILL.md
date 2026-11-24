@@ -9,9 +9,9 @@ Evalúa el asistente o chat integrado en el dashboard en dos frentes: que no se 
 
 ## Condiciones obligatorias
 1. **Autorización**: el usuario confirma que es dueño del sistema o tiene permiso para probarlo.
-2. **Entorno**: staging o QA, con datos ficticios.
+2. **Entorno**: staging o QA, con datos ficticios (prefijo `QA_AAAAMMDD_`, o `QA_AAAAMMDD_IA_` si corres en paralelo con otras skills).
 3. **Cuentas**: al menos dos usuarios con roles distintos y, si es multi-tenant, de dos organizaciones distintas.
-4. **Exfiltración controlada**: nunca envíes datos a dominios reales de terceros. Para probar fugas por enlaces o imágenes usa un dominio inexistente (por ejemplo, `qa-canary.invalid`) u otro controlado por el usuario, y observa las peticiones en la pestaña Red del navegador.
+4. **Exfiltración controlada**: nunca envíes datos a dominios reales de terceros. Para probar fugas por enlaces o imágenes usa un dominio inexistente (por ejemplo, `qa-canary.invalid`) u otro controlado por el usuario, y observa las peticiones en la pestaña Red del navegador. Guarda capturas y trazas sanitizadas en `evidencia-ia/` junto al informe.
 
 Si confirmas una fuga entre usuarios u organizaciones, detén esa línea de prueba y avisa al usuario de inmediato.
 

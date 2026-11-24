@@ -8,7 +8,7 @@ description: Audita la accesibilidad de un dashboard según WCAG 2.2 AA: teclado
 Comprueba que personas con discapacidad visual, motora, auditiva o cognitiva pueden usar el dashboard completo. Los dashboards tienen riesgos propios: gráficos que solo se entienden con la vista, colores como único código, datos que se actualizan solos y tablas complejas.
 
 ## Alcance
-Incluye: revisión automática, navegación con teclado, lectores de pantalla, gráficos y visualizaciones, color y contraste, zoom y reflujo, formularios y errores, movimiento y límites de tiempo, contenido dinámico y documentos exportados.
+Incluye: revisión automática, navegación con teclado, lectores de pantalla, gráficos y visualizaciones (si aplica al producto), color y contraste, zoom y reflujo, formularios y errores, movimiento y límites de tiempo, contenido dinámico y documentos exportados. En aplicaciones transaccionales sin gráficos analíticos, marca el paso 4 como "No aplica".
 
 Fuera de alcance: pruebas funcionales generales, rendimiento y seguridad. Si encuentras algo de eso por casualidad, anótalo.
 
@@ -39,6 +39,7 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 - Asocia cada hallazgo a un criterio WCAG concreto (número, nombre y nivel) y a una subcaracterística de ISO/IEC 25010.
 - Describe el impacto en términos de la persona afectada ("un usuario de lector de pantalla no sabe qué filtro está activo"), no solo la regla técnica.
 - Si no pudiste usar un lector de pantalla real, dilo y limita las conclusiones de esa parte a la inspección del código y del árbol de accesibilidad.
+- Guarda salidas de herramientas automáticas, capturas y transcripciones relevantes en `evidencia-a11y/` junto al informe.
 
 ## Paso 1: Revisión automática
 Pasa el verificador automático en cada pantalla y en cada estado relevante (con un modal abierto, con errores de formulario, con un panel desplegado, en estado vacío). Agrupa los resultados por tipo de problema y no repitas el mismo error cien veces: un hallazgo por causa, con una lista de ubicaciones.

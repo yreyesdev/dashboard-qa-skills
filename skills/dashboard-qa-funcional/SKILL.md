@@ -8,9 +8,9 @@ description: Prueba funcional completa de un dashboard web: recorridos por rol, 
 Verifica que cada elemento del dashboard hace lo que debe según las reglas de negocio, empezando por los recorridos principales de cada rol. Entrega una matriz de cobertura y hallazgos reproducibles.
 
 ## Alcance
-Incluye: recorridos principales (happy path) por rol, widgets y gráficos, filtros, formularios, cálculos y reglas de negocio visibles, acciones (crear, editar, borrar, aprobar), exportaciones, navegación y mensajes al usuario.
+Incluye: recorridos principales (happy path) por rol, widgets y gráficos (si aplica al producto), filtros, formularios, cálculos y reglas de negocio visibles, acciones (crear, editar, borrar, aprobar), exportaciones, navegación y mensajes al usuario.
 
-Fuera de alcance: auditoría de seguridad, pruebas de carga, accesibilidad en profundidad y reconciliación exhaustiva contra la base de datos. Si encuentras algo grave de estos temas por casualidad, regístralo igual.
+Fuera de alcance: auditoría de seguridad, pruebas de carga, accesibilidad en profundidad, reconciliación exhaustiva contra la base de datos (ver `dashboard-qa-integridad-datos`) y pruebas profundas de concurrencia/carreras de red (ver `dashboard-qa-estado-concurrencia`). Si encuentras algo grave de estos temas por casualidad, regístralo igual como incidental. Si la aplicación es transaccional y no tiene gráficos analíticos, marca los puntos de gráficos del paso 3 como "No aplica".
 
 ## Referencias normativas
 Esta skill produce evidencia alineada con las normas siguientes, pero no certifica el cumplimiento de ninguna. Cita solo números de cláusula, característica o control con descripciones propias; nunca copies el texto de las normas. Si la organización tiene las normas, contrasta con el texto oficial.
@@ -37,7 +37,8 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 
 ## Reglas de trabajo
 - Trabaja solo en el entorno acordado (ISO/IEC 27001, 8.31).
-- Crea tus datos de prueba con un prefijo identificable (`QA_AAAAMMDD_`), sin datos personales reales (8.33), y no modifiques ni borres datos que no creaste.
+- Crea tus datos de prueba con un prefijo identificable (`QA_AAAAMMDD_`, o `QA_AAAAMMDD_FUN_` si corres en paralelo con otras skills), sin datos personales reales (8.33), y no modifiques ni borres datos que no creaste.
+- Guarda capturas y archivos de respaldo en una subcarpeta `evidencia-fun/` junto al informe, sin credenciales ni tokens completos.
 - Cada hallazgo debe ser reproducible: anota rol, filtros activos, datos usados y pasos exactos.
 - Nunca afirmes que algo funciona sin haberlo ejecutado. Lo que no pudiste probar va como "No verificado" con el motivo.
 - Ante un fallo intermitente, repite el caso varias veces y anota la frecuencia (por ejemplo, 2 de 5).

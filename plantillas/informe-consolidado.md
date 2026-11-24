@@ -31,7 +31,15 @@
 | Accesibilidad (A11Y) | | | | | |
 | Compatibilidad e idiomas (COMP) | | | | | |
 | Mantenibilidad (MANT) | | | | | |
-| **Total** | | | | | |
+| **Total (con duplicados)** | | | | | |
+
+> Si varias skills detectaron el mismo problema por caminos distintos, indica aquí el total de **problemas únicos tras deduplicar por causa raíz** (por ejemplo: `<N> problemas únicos tras agrupar en <M> causas raíz`).
+
+### 2.1 Causas raíz (deduplicación)
+
+| # | Causa raíz | Severidad consolidada | IDs relacionados |
+|---|---|---|---|
+| R1 | `<descripción técnica breve de la causa común>` | | |
 
 ### Los 5 hallazgos más importantes
 
@@ -69,7 +77,7 @@ Resume el resultado por característica a partir de las tablas de trazabilidad d
 
 ## 6. Hallazgos detallados
 
-<Pega aquí los hallazgos de cada skill en su formato original, agrupados por skill y ordenados por severidad. Si un mismo problema aparece en varias skills, déjalo en una sola y cita los demás IDs.>
+<Pega aquí los hallazgos de cada skill en su formato original, agrupados por skill y ordenados por severidad, o enlaza a los informes individuales (`funcional.md`, `integridad-datos.md`, etc.) y a sus carpetas `evidencia-<prefijo>/`. Si un mismo problema aparece en varias skills, déjalo en una sola (o en la sección 2.1) y cita los demás IDs.>
 
 ## 7. Supuestos, limitaciones y lo que no se evaluó
 

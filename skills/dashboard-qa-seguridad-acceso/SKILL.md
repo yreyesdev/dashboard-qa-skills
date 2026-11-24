@@ -45,7 +45,7 @@ Esta skill produce evidencia técnica para controles de las normas siguientes, p
 - **Referencias técnicas complementarias** (no ISO): OWASP Top 10, OWASP ASVS y CWE para clasificar cada hallazgo.
 
 ## Herramientas
-Navegador con herramientas de desarrollo (pestañas Red y Aplicación), `curl` o un cliente HTTP, y un proxy de intercepción (Burp Suite o OWASP ZAP) si el usuario lo tiene. Guarda cada petición y respuesta relevante como evidencia, con los tokens y datos personales ocultados.
+Navegador con herramientas de desarrollo (pestañas Red y Aplicación), `curl` o un cliente HTTP, y un proxy de intercepción (Burp Suite o OWASP ZAP) si el usuario lo tiene. Guarda cada petición y respuesta relevante en `evidencia-sec/` junto al informe, con los tokens y datos personales ocultados. Si creas datos de prueba en paralelo con otras skills, usa el prefijo `QA_AAAAMMDD_SEC_`.
 
 ## Paso 1: Matriz de permisos
 Construye la matriz esperada (según la especificación o, si no existe, preguntando al usuario):

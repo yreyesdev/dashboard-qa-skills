@@ -116,7 +116,7 @@ Las tablas de trazabilidad de los informes de SEC, IA y MANT pueden aportarse co
 | ISO/IEC 42001 | Sistema de gestión de la IA | IA |
 | ISO/IEC 23894 | Gestión del riesgo de IA | IA |
 | ISO/IEC 25023 | Medidas de calidad de producto | PERF, MANT (y cualquier skill que quiera métricas formales) |
-| ISO/IEC/IEEE 29119 | Proceso y documentación de pruebas | FUN (y la plantilla de informe consolidado) |
+| ISO/IEC/IEEE 29119 | Proceso y documentación de pruebas | FUN, `dashboard-qa-consolidar` (y la plantilla de informe consolidado) |
 | ISO/IEC 40500 | Versión ISO de WCAG 2.0 | A11Y |
 | ISO 9241-171 | Accesibilidad del software | A11Y |
 | EN 301 549 | Requisitos de accesibilidad TIC (Europa) | A11Y |

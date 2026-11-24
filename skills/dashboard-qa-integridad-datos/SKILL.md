@@ -10,7 +10,7 @@ Un dashboard puede funcionar perfectamente y aun así mostrar cifras equivocadas
 ## Alcance
 Incluye: definición de cada métrica, reconciliación con la fuente, agregaciones, cortes de tiempo y zonas horarias, redondeo y formato numérico, monedas, frescura de los datos, coherencia entre widgets, pantallas, API y exportaciones, y tratamiento de datos borrados, duplicados o tardíos.
 
-Fuera de alcance: usabilidad, seguridad y rendimiento. Si una consulta tarda mucho o ves un dato de otro usuario, anótalo igual como hallazgo incidental.
+Fuera de alcance: usabilidad, seguridad, rendimiento y la verificación de formato regional de visualización/entrada en distintos idiomas o navegadores (ver `dashboard-qa-compatibilidad-i18n`) o fechas límite de formularios (ver `dashboard-qa-edge-cases`); aquí el foco temporal es la exactitud de los cálculos, cortes de periodo y "hoy" frente a la fuente de verdad. Si una consulta tarda mucho o ves un dato de otro usuario, anótalo igual como hallazgo incidental.
 
 ## Referencias normativas
 Esta skill produce evidencia alineada con las normas siguientes, pero no certifica el cumplimiento de ninguna. Cita solo números y nombres de características o controles con descripciones propias; nunca copies el texto de las normas.
@@ -43,8 +43,8 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 
 ## Reglas de trabajo
 - Solo consultas de lectura en la fuente de verdad. Nunca `UPDATE`, `DELETE` ni DDL.
-- Si creas datos de control, hazlo solo en staging (8.31), con el prefijo `QA_AAAAMMDD_` y sin datos personales reales (8.33), y documenta cómo limpiarlos.
-- Calcula los valores esperados con código o SQL, nunca de cabeza. Guarda cada consulta usada como evidencia.
+- Si creas datos de control, hazlo solo en staging (8.31), con el prefijo `QA_AAAAMMDD_` (o `QA_AAAAMMDD_DAT_` si corres en paralelo con otras skills) y sin datos personales reales (8.33), y documenta cómo limpiarlos.
+- Calcula los valores esperados con código o SQL, nunca de cabeza. Guarda cada consulta usada como evidencia en `evidencia-dat/` junto al informe (sin datos personales reales).
 - Registra siempre los filtros, el periodo, la zona horaria y la hora exacta de cada comparación: sin eso, una diferencia no es reproducible.
 - No supongas la causa de una diferencia sin evidencia: describe la diferencia y propone hipótesis marcadas como tales.
 

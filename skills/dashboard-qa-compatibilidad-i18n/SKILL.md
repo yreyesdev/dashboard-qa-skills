@@ -10,7 +10,7 @@ Comprueba que el dashboard funciona y se ve bien en los navegadores y dispositiv
 ## Alcance
 Incluye: matriz de navegadores y sistemas operativos, dispositivos y diseño responsive, particularidades de cada navegador, impresión y descargas, traducciones, formatos regionales de números, monedas, fechas y horas, ordenamiento y búsqueda por idioma, escritura de derecha a izquierda y exportaciones según la región.
 
-Fuera de alcance: lógica de negocio, seguridad, rendimiento y auditoría de accesibilidad. Si encuentras algo de eso por casualidad, anótalo.
+Fuera de alcance: lógica de negocio, exactitud de cálculos temporales de "hoy" en backend o base de datos (ver `dashboard-qa-integridad-datos`), seguridad, rendimiento y auditoría de accesibilidad. Si encuentras algo de eso por casualidad (o si la otra skill no corre), anótalo como incidental.
 
 ## Referencias normativas
 Esta skill produce evidencia alineada con las normas siguientes, pero no certifica el cumplimiento de ninguna. Cita solo números y nombres de características con descripciones propias; nunca copies el texto de las normas.
@@ -41,8 +41,8 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 ## Reglas de trabajo
 - Prioriza la matriz por uso real: el 95 % del tráfico primero, los casos raros después.
 - Lo emulado no sustituye a lo real en Safari de iOS ni en pantallas táctiles; si no tuviste acceso, márcalo como "No verificado en dispositivo real".
-- Usa capturas comparativas de la misma pantalla en cada combinación para detectar diferencias visuales.
-- Si usas un servicio de pruebas en la nube, hazlo con datos ficticios (8.33).
+- Usa capturas comparativas de la misma pantalla en cada combinación para detectar diferencias visuales y guárdalas en `evidencia-comp/` junto al informe.
+- Si usas un servicio de pruebas en la nube o creas datos en paralelo con otras skills, hazlo con datos ficticios prefijados con `QA_AAAAMMDD_COMP_` (8.33).
 
 ## Paso 1: Matriz de compatibilidad
 Si no hay analítica, usa esta matriz por defecto:

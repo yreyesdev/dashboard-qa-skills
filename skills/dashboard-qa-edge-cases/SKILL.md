@@ -10,7 +10,7 @@ Busca el punto donde el dashboard deja de comportarse bien cuando los datos, las
 ## Alcance
 Incluye: estados vacíos, valores extremos, volúmenes grandes, fechas límite, texto y caracteres especiales, entradas inválidas, archivos, fallos de red y del servidor, tamaños de pantalla extremos e interacciones bruscas.
 
-Fuera de alcance: medición formal de rendimiento, explotación de vulnerabilidades y auditoría de accesibilidad. Si algo de eso aparece, anótalo como hallazgo incidental.
+Fuera de alcance: medición formal de rendimiento, explotación de vulnerabilidades o seguridad de exportaciones como inyección de fórmulas en CSV/Excel (ver `dashboard-qa-seguridad-acceso`), pruebas profundas de concurrencia/idempotencia en red (ver `dashboard-qa-estado-concurrencia`) y auditoría de accesibilidad. Si algo de eso aparece (o si la otra skill no se ejecuta), anótalo como hallazgo incidental.
 
 ## Referencias normativas
 Esta skill produce evidencia alineada con las normas siguientes, pero no certifica el cumplimiento de ninguna. Cita solo números y nombres de características o controles con descripciones propias; nunca copies el texto de las normas.
@@ -41,7 +41,8 @@ Reúne lo siguiente. Si falta algo, pregúntalo una sola vez; si nadie responde,
 
 ## Reglas de trabajo
 - Trabaja solo en staging o QA (8.31) y usa únicamente datos ficticios (8.33).
-- Prefija todos los datos que crees con `QA_AAAAMMDD_` y deja un registro de cómo borrarlos.
+- Prefija todos los datos que crees con `QA_AAAAMMDD_` (o `QA_AAAAMMDD_EDGE_` si corres en paralelo con otras skills) y deja un registro de cómo borrarlos.
+- Guarda capturas y salidas relevantes en `evidencia-edge/` junto al informe (sin credenciales ni tokens).
 - No cargues volúmenes masivos sin avisar al equipo del entorno: puedes afectar a otras personas que lo usan.
 - Para cada caso, define antes de ejecutarlo qué sería un comportamiento aceptable; así evitas justificar después lo que veas.
 - Comprueba también la consola del navegador y las respuestas de red: un error silencioso en consola es un hallazgo aunque la interfaz parezca bien.
@@ -98,7 +99,7 @@ Introduce estos valores en nombres, descripciones, comentarios, búsquedas y fil
 - Comillas y caracteres de escape: `O'Brien "test" \ / ; --`.
 - Marcado inofensivo como texto: `<b>negrita</b>` debe verse literal, no en negrita.
 - Saltos de línea y tabulaciones en campos de una línea.
-- Contenido que empieza por `=`, `+`, `-` o `@`: en la exportación a CSV o Excel no debe interpretarse como fórmula.
+- Contenido que empieza por `=`, `+`, `-` o `@`: verifica que no rompa el guardado o el renderizado; la evaluación de seguridad por inyección de fórmulas en CSV o Excel corresponde a `dashboard-qa-seguridad-acceso` (repórtalo como incidental solo si `SEC` no se ejecuta).
 - Caracteres invisibles (espacio de ancho cero) en nombres que parecen duplicados.
 
 ## Paso 6: Entradas inválidas
